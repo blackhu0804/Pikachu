@@ -15,7 +15,8 @@
     },20)
   }
   let code =  
-  `.preview {
+  `/* 首先，我们需要准备皮卡丘的皮 */
+  .preview {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -30,6 +31,7 @@
   .wrapper > :not(:last-child) {
     z-index: 1;
   }
+  /* 我们先画一个小鼻子 */
   .nose {
     width: 0px;
     height: 0px;
@@ -41,6 +43,7 @@
     top: 28px;
     transform: translateX(-50%);
   }
+  /* 下面我们开始画眼睛 */
   .eye {
     width: 49px;
     height: 49px;
@@ -49,6 +52,7 @@
     border-radius: 50%;
     border: 2px solid #000;
   }
+  /* 花眼珠开始 */
   .eye::before {
     content: '';
     display: block;
@@ -61,16 +65,17 @@
     top: -1px;
     border: 2px solid #000;
   }
+  /* 画左眼 */
   .eye.left {
     right: 50%;
     margin-right: 90px;
   }
-  
+  /* 画右眼 */
   .eye.right {
     left: 50%;
     margin-left: 90px;
   }
-  
+  /* 然后，画皮卡丘的脸 */
   .face {
     width: 60px;
     height: 60px;
@@ -80,6 +85,7 @@
     position: absolute;
     top: 85px;
   }
+  /* 将脸放到正确的位置上 */
   .face.left{
     right: 50%;
     margin-right: 116px;
@@ -88,6 +94,7 @@
     left: 50%;
     margin-left: 116px;
   }
+  /* 我们画上嘴唇 */
   .upperTip {
     height: 25px;
     width: 80px;
@@ -119,6 +126,7 @@
     width: 300px;
     overflow: hidden;
   }
+  /* 我们画下嘴唇 */
   .lowerTip {
     width: 300px;
     height: 3500px;
@@ -129,6 +137,7 @@
     bottom: 0;
     overflow: hidden;
   }
+  /* 最后我们画上舌头 */
   .lowerTip::after {
     content: '';
     position: absolute;
@@ -143,4 +152,4 @@
   }`
 
   writeCode('', code);
-})().call()
+})()

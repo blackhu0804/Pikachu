@@ -18,6 +18,7 @@ body {
   flex-direction: column;
 }
 .code-wrapper {  
+  padding: 10px;
   height: 50vh;
   flex: 1;
 }
