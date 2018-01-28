@@ -12,7 +12,7 @@
         window.clearInterval(timer);
         fn && fn.call();
       }
-    },10)
+    },20)
   }
   let code =  
   `.preview {
