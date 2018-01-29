@@ -1,36 +1,7 @@
 (function() {
-  let time = 50;
-  $('.actions').on('click', 'button', function(e){
-    let $button = $(e.currentTarget); // 点击的button
-    let speed = $button.attr('data-speed');
-    $button.addClass('active').siblings('.active').removeClass('active')
-    if(speed == 'slow'){
-      time = 100;
-    } else if(speed == 'normal') {
-      time = 30;     
-    } else {
-      time = 10;
-    }
-  })
-
-  function writeCode(prefix, code, fn){
-    let container = document.querySelector('#code');
-    let styleTag = document.querySelector('#styleTag');
-    let n = 0;
-    setTimeout( function run() {
-      n += 1;
-      container.innerHTML = code.substring(0, n);
-      styleTag.innerHTML = code.substring(0, n);
-      container.scrollTop = container.scrollHeight;
-      if(n < code.length){
-        setTimeout(run, time);
-      } else {
-        fn && fn.call();        
-      }
-    },time)
-  }
   let code =  
-  `/* 首先，我们需要准备皮卡丘的皮 */
+  `/* 今天，我们来画一个皮卡丘，准备好了吗，开始喽！ */
+  /* 首先，我们需要准备皮卡丘的皮 */
   .preview {
     height: 100%;
     display: flex;
@@ -46,6 +17,11 @@
   .wrapper > :not(:last-child) {
     z-index: 1;
   }
+  /* 上面的代码看起来实在是太丑了，让他高亮一下 */
+  .token.comment{color:slategray;}
+  .token.selector{color: #690;}
+  .token.punctuation {color: #999;}
+  .token.property {color: #905;} 
   /* 我们先画一个小鼻子 */
   .nose {
     width: 0px;
@@ -67,7 +43,7 @@
     border-radius: 50%;
     border: 2px solid #000;
   }
-  /* 花眼珠开始 */
+  /* 开始画眼珠 */
   .eye::before {
     content: '';
     display: block;
@@ -164,10 +140,41 @@
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50px;
-  }`
+  }
+  /* ok！一个简单的皮卡丘就完成了！ */`
 
-  writeCode('', code);
+  let time = 50;
+  $('.actions').on('click', 'button', function(e){
+    let $button = $(e.currentTarget); // 点击的button
+    let speed = $button.attr('data-speed');
+    $button.addClass('active').siblings('.active').removeClass('active')
+    if(speed == 'slow'){
+      time = 60;
+    } else if(speed == 'normal') {
+      time = 25;     
+    } else {
+      time = 10;
+    }
+  })
 
+  function writeCode(prefix, code, fn){
+    let container = document.querySelector('#code');
+    let styleTag = document.querySelector('#styleTag');
+    let n = 0;
+    setTimeout( function run() {
+      n += 1;
+      container.innerHTML = code.substring(0, n);
+      container.innerHTML = Prism.highlight(container.innerHTML, Prism.languages.css);
+      styleTag.innerHTML = code.substring(0, n);
+      container.scrollTop = container.scrollHeight;
+      if(n < code.length){
+        setTimeout(run, time);
+      } else {
+        fn && fn.call();        
+      }
+    },time)
+  }
   
+  writeCode('', code);
 
 })()
