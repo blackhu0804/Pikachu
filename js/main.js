@@ -1,18 +1,33 @@
 (function() {
+  let time = 50;
+  $('.actions').on('click', 'button', function(e){
+    let $button = $(e.currentTarget); // 点击的button
+    let speed = $button.attr('data-speed');
+    $button.addClass('active').siblings('.active').removeClass('active')
+    if(speed == 'slow'){
+      time = 100;
+    } else if(speed == 'normal') {
+      time = 30;     
+    } else {
+      time = 10;
+    }
+  })
+
   function writeCode(prefix, code, fn){
     let container = document.querySelector('#code');
     let styleTag = document.querySelector('#styleTag');
     let n = 0;
-    let timer = setInterval( () => {
+    setTimeout( function run() {
       n += 1;
       container.innerHTML = code.substring(0, n);
       styleTag.innerHTML = code.substring(0, n);
       container.scrollTop = container.scrollHeight;
-      if(n >= code.length){
-        window.clearInterval(timer);
-        fn && fn.call();
+      if(n < code.length){
+        setTimeout(run, time);
+      } else {
+        fn && fn.call();        
       }
-    },20)
+    },time)
   }
   let code =  
   `/* 首先，我们需要准备皮卡丘的皮 */
@@ -152,4 +167,7 @@
   }`
 
   writeCode('', code);
+
+  
+
 })()
