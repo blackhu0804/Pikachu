@@ -1,5 +1,5 @@
 (function() {
-  let code =  
+   code =  
   `/* 今天，我们来画一个皮卡丘，准备好了吗，开始喽！ */
   /* 首先，我们需要准备皮卡丘的皮 */
   .preview {
@@ -143,10 +143,10 @@
   }
   /* ok！一个简单的皮卡丘就完成了！ */`
 
-  let time = 50;
+   time = 50;
   $('.actions').on('click', 'button', function(e){
-    let $button = $(e.currentTarget); // 点击的button
-    let speed = $button.attr('data-speed');
+     $button = $(e.currentTarget); // 点击的button
+     speed = $button.attr('data-speed');
     $button.addClass('active').siblings('.active').removeClass('active')
     if(speed == 'slow'){
       time = 60;
@@ -158,9 +158,9 @@
   })
 
   function writeCode(prefix, code, fn){
-    let container = document.querySelector('#code');
-    let styleTag = document.querySelector('#styleTag');
-    let n = 0;
+    var container = document.querySelector('#code');
+    var styleTag = document.querySelector('#styleTag');
+    var n = 0;
     setTimeout( function run() {
       n += 1;
       container.innerHTML = code.substring(0, n);
